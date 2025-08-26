@@ -1,0 +1,30 @@
+package com.oocl.traning.Controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/v1")
+public class CompanyController {
+    private final static Map<Integer,Company> companies = new HashMap<>();
+    @GetMapping("/employees")
+    public ArrayList<Employee> getEmployees(){
+        ArrayList<Employee> employees = new ArrayList<>();
+        for (Company company:companies.values()){
+            employees.addAll(company.getEmployees());
+        }
+        return employees;
+    }
+
+    @PostMapping("/companies")
+    @ResponseStatus(HttpStatus.CREATED)//返回创建成功的状态码
+    public void postCompany(@RequestBody Company company){
+        company.setId(companies.size()+1);
+        companies.put(companies.size()+1,company);
+    }
+
+}
