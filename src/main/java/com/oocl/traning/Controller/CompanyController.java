@@ -82,6 +82,13 @@ public class CompanyController {
         return res.toString();
     }
 
+    @GetMapping("/companies/1")
+    public String getOneCompany() {
+        Company company=companies.get(1);
+        return company.getCompanyIDAndName();
+    }
+
+
 
     @PostMapping("/companies")
     @ResponseStatus(HttpStatus.CREATED)//返回创建成功的状态码
