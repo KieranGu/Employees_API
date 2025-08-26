@@ -57,6 +57,19 @@ public class CompanyController {
         }
     }
 
+    @GetMapping("/employees?page=1&pageSize=5")
+    public ArrayList<Employee> getEmployeesByPage() {
+        int PAGE=1;
+        int PAGE_SIZE=5;
+        ArrayList<Employee> employeesByPage = new ArrayList<>();
+        int start = (PAGE - 1) * PAGE_SIZE;
+        int end = Math.min(start + PAGE_SIZE, allEmployees.size());
+        for (int i = start; i < end; i++) {
+            employeesByPage.add(allEmployees.get(i));
+        }
+        return employeesByPage;
+    }
+
 
     @PostMapping("/companies")
     @ResponseStatus(HttpStatus.CREATED)//返回创建成功的状态码
