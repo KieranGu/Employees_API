@@ -88,6 +88,10 @@ public class CompanyController {
         return company.getCompanyIDAndName();
     }
 
+    @GetMapping("/companies/1/employees")
+    public List<Employee> getEmployeesByCompanyId() {
+        return companies.get(1).getEmployees();
+    }
 
 
     @PostMapping("/companies")
