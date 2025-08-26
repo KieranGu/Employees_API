@@ -119,4 +119,9 @@ public class CompanyController {
         Company company=companies.get(1);
         company.setName(name);
     }
+
+    @DeleteMapping("/companies/1")
+    public void deleteCompany(){
+        companies.remove(1);
+    }
 }
