@@ -3,6 +3,7 @@ package com.oocl.traning.Controller;
 import ch.qos.logback.core.joran.sanity.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.*;
 
@@ -10,18 +11,18 @@ import java.util.*;
 @RequestMapping("/api/v1")
 public class CompanyController {
     private final static Map<Integer, Company> companies = new HashMap<>();
-    private final static Map<Integer,Employee> allEmployees = new HashMap<>();
+    private final static Map<Integer, Employee> allEmployees = new HashMap<>();
 
     @PostMapping("/employees")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveEmployee(Employee employee) {
-        employee.setEmployeeID(allEmployees.size()+1);
-        allEmployees.put(allEmployees.size()+1,employee);
+        employee.setEmployeeID(allEmployees.size() + 1);
+        allEmployees.put(allEmployees.size() + 1, employee);
     }
 
     @GetMapping("/employees/1")
     public Employee getEmployeeById(int id) {
-        List<Employee> employees= new ArrayList<>(allEmployees.values());
+        List<Employee> employees = new ArrayList<>(allEmployees.values());
         for (Employee employee : employees) {
             if (employee.getEmployeeID() == id) {
                 return employee;
@@ -31,9 +32,9 @@ public class CompanyController {
     }
 
     @GetMapping("/employees?gender=male")
-    public List<Employee> getAllMaleEmployees(){
+    public List<Employee> getAllMaleEmployees() {
         List<Employee> maleEmployees = new ArrayList<>();
-        List<Employee> employees= new ArrayList<>(allEmployees.values());
+        List<Employee> employees = new ArrayList<>(allEmployees.values());
 
         for (Employee employee : employees) {
             if (Objects.equals(employee.getGender(), "male")) {
@@ -49,20 +50,17 @@ public class CompanyController {
     }
 
     @PutMapping("/employees/1")
-    public void updateEmployeeAgeandSalary(int id, int age, int salary) {
-        List<Employee> employees= new ArrayList<>(allEmployees.values());
-        for (Employee employee : employees) {
-            if (employee.getEmployeeID() == id) {
-                employee.setAge(age);
-                employee.setSalary(salary);
-            }
-        }
+    public void updateEmployeeAgeandSalary(int age, int salary) {
+        Employee employee = allEmployees.get(1);
+        employee.setAge(age);
+        employee.setSalary(salary);
     }
+
 
     @GetMapping("/employees?page=1&pageSize=5")
     public ArrayList<Employee> getEmployeesByPage() {
-        int PAGE=1;
-        int PAGE_SIZE=5;
+        int PAGE = 1;
+        int PAGE_SIZE = 5;
         ArrayList<Employee> employeesByPage = new ArrayList<>();
         int start = (PAGE - 1) * PAGE_SIZE;
         int end = Math.min(start + PAGE_SIZE, allEmployees.size());
@@ -74,7 +72,7 @@ public class CompanyController {
 
     @GetMapping("/companies")
     public String getAllCompanies() {
-        StringBuilder res= new StringBuilder();
+        StringBuilder res = new StringBuilder();
         List<Company> companyList = new ArrayList<>(companies.values());
         for (Company company : companyList) {
             res.append(company.getCompanyIDAndName()).append("\n");
@@ -84,7 +82,7 @@ public class CompanyController {
 
     @GetMapping("/companies/1")
     public String getOneCompany() {
-        Company company=companies.get(1);
+        Company company = companies.get(1);
         return company.getCompanyIDAndName();
     }
 
@@ -95,8 +93,8 @@ public class CompanyController {
 
     @GetMapping("/companies?page=1&pageSize=5")
     public ArrayList<Company> getCompaniesByPage() {
-        int PAGE=1;
-        int PAGE_SIZE=5;
+        int PAGE = 1;
+        int PAGE_SIZE = 5;
         ArrayList<Company> companiesByPage = new ArrayList<>();
         int start = (PAGE - 1) * PAGE_SIZE;
         int end = Math.min(start + PAGE_SIZE, companies.size());
@@ -116,12 +114,12 @@ public class CompanyController {
 
     @PutMapping("/companies/1")
     public void updateCompanyName(String name) {
-        Company company=companies.get(1);
+        Company company = companies.get(1);
         company.setName(name);
     }
 
     @DeleteMapping("/companies/1")
-    public void deleteCompany(){
+    public void deleteCompany() {
         companies.remove(1);
     }
 }
