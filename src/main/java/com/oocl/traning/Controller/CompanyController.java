@@ -42,11 +42,19 @@ public class CompanyController {
         return maleEmployees;
     }
 
-
-
     @GetMapping("/employees")
     public ArrayList<Employee> getAllEmployees() {
         return allEmployees;
+    }
+
+    @PutMapping("/employees/1")
+    public void updateEmployeeAgeandSalary(int id, int age, int salary) {
+        for (Employee employee : allEmployees) {
+            if (employee.getEmployeeID() == id) {
+                employee.setAge(age);
+                employee.setSalary(salary);
+            }
+        }
     }
 
 
