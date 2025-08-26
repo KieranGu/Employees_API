@@ -114,4 +114,9 @@ public class CompanyController {
         companies.put(companies.size() + 1, company);
     }
 
+    @PutMapping("/companies/1")
+    public void updateCompanyName(String name) {
+        Company company=companies.get(1);
+        company.setName(name);
+    }
 }
