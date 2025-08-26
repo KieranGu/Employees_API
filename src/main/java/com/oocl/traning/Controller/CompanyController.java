@@ -11,6 +11,13 @@ import java.util.Map;
 @RequestMapping("/api/v1")
 public class CompanyController {
     private final static Map<Integer,Company> companies = new HashMap<>();
+    private final static ArrayList<Employee> allEmployees = new ArrayList<>();
+    @PostMapping("/employees")
+    public void postEmployee(Employee employee){
+        employee.setEmployeeID(allEmployees.size()+1);
+        allEmployees.set(allEmployees.size()+1,employee);
+    }
+
     @GetMapping("/employees")
     public ArrayList<Employee> getEmployees(){
         ArrayList<Employee> employees = new ArrayList<>();
@@ -19,6 +26,9 @@ public class CompanyController {
         }
         return employees;
     }
+
+
+
 
     @PostMapping("/companies")
     @ResponseStatus(HttpStatus.CREATED)//返回创建成功的状态码
