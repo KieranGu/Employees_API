@@ -73,9 +73,13 @@ public class CompanyController {
     }
 
     @GetMapping("/companies")
-    public void getAllCompanies() {
-
-
+    public String getAllCompanies() {
+        StringBuilder res= new StringBuilder();
+        List<Company> companyList = new ArrayList<>(companies.values());
+        for (Company company : companyList) {
+            res.append(company.getCompanyIDAndName()).append("\n");
+        }
+        return res.toString();
     }
 
 
