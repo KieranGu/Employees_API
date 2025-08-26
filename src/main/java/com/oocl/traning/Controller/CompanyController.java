@@ -1,29 +1,28 @@
 package com.oocl.traning.Controller;
 
+import ch.qos.logback.core.joran.sanity.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1")
 public class CompanyController {
     private final static Map<Integer, Company> companies = new HashMap<>();
-    private final static ArrayList<Employee> allEmployees = new ArrayList<>();
+    private final static Map<Integer,Employee> allEmployees = new HashMap<>();
 
     @PostMapping("/employees")
     @ResponseStatus(HttpStatus.CREATED)
-    public void postEmployee(Employee employee) {
-        employee.setEmployeeID(allEmployees.size() + 1);
-        allEmployees.set(allEmployees.size() + 1, employee);
+    public void saveEmployee(Employee employee) {
+        employee.setEmployeeID(allEmployees.size()+1);
+        allEmployees.put(allEmployees.size()+1,employee);
     }
 
     @GetMapping("/employees/1")
     public Employee getEmployeeById(int id) {
-        for (Employee employee : allEmployees) {
+        List<Employee> employees= new ArrayList<>(allEmployees.values());
+        for (Employee employee : employees) {
             if (employee.getEmployeeID() == id) {
                 return employee;
             }
@@ -32,9 +31,11 @@ public class CompanyController {
     }
 
     @GetMapping("/employees?gender=male")
-    public ArrayList<Employee> getAllMaleEmployees(){
-        ArrayList<Employee> maleEmployees = new ArrayList<>();
-        for (Employee employee : allEmployees) {
+    public List<Employee> getAllMaleEmployees(){
+        List<Employee> maleEmployees = new ArrayList<>();
+        List<Employee> employees= new ArrayList<>(allEmployees.values());
+
+        for (Employee employee : employees) {
             if (Objects.equals(employee.getGender(), "male")) {
                 maleEmployees.add(employee);
             }
@@ -44,12 +45,13 @@ public class CompanyController {
 
     @GetMapping("/employees")
     public ArrayList<Employee> getAllEmployees() {
-        return allEmployees;
+        return new ArrayList<>(allEmployees.values());
     }
 
     @PutMapping("/employees/1")
     public void updateEmployeeAgeandSalary(int id, int age, int salary) {
-        for (Employee employee : allEmployees) {
+        List<Employee> employees= new ArrayList<>(allEmployees.values());
+        for (Employee employee : employees) {
             if (employee.getEmployeeID() == id) {
                 employee.setAge(age);
                 employee.setSalary(salary);
@@ -68,6 +70,12 @@ public class CompanyController {
             employeesByPage.add(allEmployees.get(i));
         }
         return employeesByPage;
+    }
+
+    @GetMapping("/companies")
+    public void getAllCompanies() {
+
+
     }
 
 

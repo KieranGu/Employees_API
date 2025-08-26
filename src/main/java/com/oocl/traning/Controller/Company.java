@@ -32,4 +32,7 @@ public class Company {
     public void setEmployees(ArrayList<Employee> employees) {
         this.employees = employees;
     }
+    public void getCompanyIDAndName(){
+        System.out.println("Company ID: "+this.id+" Company Name: "+this.name);
+    }
 }
