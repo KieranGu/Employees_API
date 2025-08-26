@@ -20,11 +20,7 @@ public class CompanyController {
 
     @GetMapping("/employees")
     public ArrayList<Employee> getEmployees(){
-        ArrayList<Employee> employees = new ArrayList<>();
-        for (Company company:companies.values()){
-            employees.addAll(company.getEmployees());
-        }
-        return employees;
+        return allEmployees;
     }
 
 
