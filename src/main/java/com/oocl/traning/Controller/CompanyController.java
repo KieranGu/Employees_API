@@ -19,7 +19,7 @@ public class CompanyController {
     }
 
     @GetMapping("/employees")
-    public ArrayList<Employee> getEmployees(){
+    public ArrayList<Employee> getAllEmployees(){
         return allEmployees;
     }
 
