@@ -3,8 +3,10 @@ package com.oocl.traning.Repository;
 import com.oocl.traning.Model.Employee;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Repository
 public class EmployeeRepository {
@@ -19,7 +21,23 @@ public class EmployeeRepository {
     public void save(Employee newEemployee) {
         allEmployees.put(newEemployee.getEmployeeID(), newEemployee);
     }
+    public Map<Integer, Employee> getAllEmployees() {
+        return allEmployees;
+    }
     public Employee findById(int id) {
         return allEmployees.get(id);
+    }
+    public ArrayList<Employee> findAll() {
+        return new ArrayList<>(allEmployees.values());
+    }
+    public ArrayList<Employee> findGender(String gender){
+        ArrayList<Employee> employees = new ArrayList<>(allEmployees.values());
+        ArrayList<Employee> genderEmployees = new ArrayList<>();
+        for (Employee employee : employees) {
+            if (Objects.equals(employee.getGender(), gender)) {
+                genderEmployees.add(employee);
+            }
+        }
+        return genderEmployees;
     }
 }

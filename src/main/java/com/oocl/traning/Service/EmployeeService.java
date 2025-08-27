@@ -23,4 +23,15 @@ public class EmployeeService {
     public Employee getEmployeeById(int id) {
         return employeeRepository.findById(id);
     }
+
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
+    public List<Employee> getEmployeesByGender(String gender)
+    {
+        if (gender == null || gender.isEmpty()) {
+            return employeeRepository.findAll();// 返回所有员工
+        }
+        return employeeRepository.findGender(gender);
+    }
 }
