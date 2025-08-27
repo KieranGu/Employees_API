@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.*;
 
 @RestController
-//@RequestMapping("/employees")
+@RequestMapping("/api/v1")
 public class CompanyController {
 //    private final static Map<Integer, Company> companies = new HashMap<>();
     private final HashMap<Integer, Company> companies = new HashMap<>(Map.of(
