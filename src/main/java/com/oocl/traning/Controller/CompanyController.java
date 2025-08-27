@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.*;
 
 @RestController
-@RequestMapping("/employees")
+//@RequestMapping("/employees")
 public class CompanyController {
 //    private final static Map<Integer, Company> companies = new HashMap<>();
     private final HashMap<Integer, Company> companies = new HashMap<>(Map.of(
@@ -42,7 +42,7 @@ public class CompanyController {
 //            4, new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0),
 //            5, new Employee(5, "Michael Jones", 40, "MALE", 7000.0)));
 
-    @PostMapping("/employees")
+        @PostMapping("/employees")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveEmployee(@RequestBody Employee employee) {
         employeeService.createEmployee(employee);
@@ -53,8 +53,8 @@ public class CompanyController {
         return employeeService.getEmployeeById(id);
     }
 
-    @GetMapping("/employees")
-    public List<Employee> getAllMaleEmployees(@RequestParam(required = false) String gender) {
+    @GetMapping(value = "/employees",params = {"gender"})
+    public List<Employee> getAllEmployeesByGender(@RequestParam(required = false) String gender) {
         return employeeService.getEmployeesByGender(gender);
     }
 
@@ -69,7 +69,7 @@ public class CompanyController {
     }
 
 
-    @GetMapping("/employees")
+    @GetMapping(value = "/employees",params = {"page","pageSize"})
     public List<Employee> getEmployeesByPage(@RequestBody int page,int pageSize) {
         return employeeService.getEmployeesByPage(page, pageSize);
     }
@@ -80,7 +80,7 @@ public class CompanyController {
         employeeService.deleteEmployee(id);
     }
 
-    @GetMapping("/companies")
+    @GetMapping(value = "/companies",params = {})
     public String getAllCompanies() {
         StringBuilder res = new StringBuilder();
         List<Company> companyList = new ArrayList<>(companies.values());
@@ -101,7 +101,7 @@ public class CompanyController {
         return companies.get(id).getEmployees();
     }
 
-    @GetMapping("/companies")
+    @GetMapping(value = "/companies",params = {"page","pageSize"})
     public ArrayList<Company> getCompaniesByPage(@RequestBody int page,int pageSize) {
         ArrayList<Company> companiesByPage = new ArrayList<>();
         int start = (page - 1) * pageSize;
