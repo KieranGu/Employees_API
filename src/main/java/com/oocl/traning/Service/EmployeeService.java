@@ -42,9 +42,11 @@ public class EmployeeService {
     }
 
     public void updateEmployeeAgeandSalary(int id, int age, double salary) {
-        Employee employee=getEmployeeById(id);
-        if(employee.getIsActive()){
-            employeeRepository.updateEmployeeAgeandSalary(id, age, salary);
+        Employee originEmployee=employeeRepository.findById(id);
+        if(originEmployee.getIsActive()){
+            originEmployee.setSalary(salary);
+            originEmployee.setAge(age);
+            employeeRepository.setAEmployee(id,originEmployee);
         }
         else throw new IllegalArgumentException("Employee is not active");
     }
