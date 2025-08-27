@@ -5,14 +5,16 @@ public class Employee {
     private String employeeName;
     private String gender;
     private int age;
-    private int salary;
+    private double salary;
 
     public Employee() {
     }
-    public Employee(int employeeID,String employeeName,String gender){
+    public Employee(int employeeID,String employeeName,int age,String gender,double salary){
         this.employeeID=employeeID;
         this.employeeName=employeeName;
         this.gender=gender;
+        this.age=age;
+        this.salary=salary;
     }
     public int getEmployeeID() {
         return employeeID;
@@ -43,7 +45,7 @@ public class Employee {
         this.age = age;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 

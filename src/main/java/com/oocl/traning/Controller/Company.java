@@ -1,19 +1,26 @@
 package com.oocl.traning.Controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Company {
     private int id;
     private String name;
-    ArrayList<Employee> employees = new ArrayList<>();
+    List<Employee> employees = new ArrayList<>();
 
     public Company() {
     }
-    public Company(int id, String name, ArrayList<Employee> employees) {
+    public Company(int id, String name, List<Employee> employees) {
         this.id = id;
         this.name = name;
         this.employees = employees;
     }
+
+    public Company(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -26,7 +33,7 @@ public class Company {
     public void setName(String name) {
         this.name = name;
     }
-    public ArrayList<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
     public void setEmployees(ArrayList<Employee> employees) {
