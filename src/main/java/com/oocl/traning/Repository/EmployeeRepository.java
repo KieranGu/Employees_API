@@ -15,10 +15,10 @@ public class EmployeeRepository {
             5, new Employee(5, "Michael Jones", 40, "MALE", 7000.0)));
 
 
-    public void save(Employee newEemployee) {
+    public Employee save(Employee newEemployee) {
         int id= Collections.max(allEmployees.keySet()) + 1;
         newEemployee.setEmployeeID(id);
-        allEmployees.put(newEemployee.getEmployeeID(), newEemployee);
+        return allEmployees.put(newEemployee.getEmployeeID(), newEemployee);
     }
     public Map<Integer, Employee> getAllEmployees() {
         return allEmployees;
@@ -60,5 +60,9 @@ public class EmployeeRepository {
         Employee employee=allEmployees.get(id);
         employee.setIsActive(false);
         allEmployees.put(id, employee);
+    }
+    public void setAEmployee(Integer id,Employee employee)
+    {
+        allEmployees.put(id,employee);
     }
 }

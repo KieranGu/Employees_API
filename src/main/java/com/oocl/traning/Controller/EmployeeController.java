@@ -14,20 +14,6 @@ import java.util.*;
 @RequestMapping("/api/v1")
 public class EmployeeController {
 //    private final static Map<Integer, Company> companies = new HashMap<>();
-    private final HashMap<Integer, Company> companies = new HashMap<>(Map.of(
-            1, new Company(1, "Acme Corporation", List.of(
-                    new Employee(1, "John Smith", 32, "MALE", 5000.0),
-                    new Employee(2, "Jane Johnson", 28, "FEMALE", 6000.0)
-            )),
-            2, new Company(2, "TechCom Solutions", List.of(
-                    new Employee(3, "David Williams", 35, "MALE", 5500.0),
-                    new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0),
-                    new Employee(5, "Michael Jones", 40, "MALE", 7000.0)
-            )),
-            3, new Company(3, "Global Innovators"),
-            4, new Company(4, "Stellar Enterprises"),
-            5, new Company(5, "Nexus Industries")
-    ));
 //    private final static Map<Integer, Employee> allEmployees = new HashMap<>();
     private EmployeeService employeeService;
 

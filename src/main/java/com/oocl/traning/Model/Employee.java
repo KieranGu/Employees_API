@@ -1,7 +1,7 @@
 package com.oocl.traning.Model;
 
 public class Employee {
-    private int employeeID;
+    private Integer employeeID;
     private String employeeName;
     private String gender;
     private int age;
@@ -12,6 +12,13 @@ public class Employee {
     }
     public Employee(int employeeID,String employeeName,int age,String gender,double salary){
         this.employeeID=employeeID;
+        this.employeeName=employeeName;
+        this.gender=gender;
+        this.age=age;
+        this.salary=salary;
+    }
+    public Employee(String employeeName,int age,String gender,double salary){
+        this.employeeID=null;
         this.employeeName=employeeName;
         this.gender=gender;
         this.age=age;

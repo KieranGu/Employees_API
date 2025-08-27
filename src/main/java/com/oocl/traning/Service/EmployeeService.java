@@ -16,14 +16,14 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public void createEmployee(Employee employee) {
+    public Employee createEmployee(Employee employee) {
         if(employee.getAge()>=65||employee.getAge()<=18){
             throw new IllegalArgumentException("Age must be between 18 and 65");
         }
         else if(employee.getAge()>=30 && employee.getSalary()<20000) {
             throw new IllegalArgumentException("Salary must be at least 20000 for employees over 30 years old");
         }
-        else employeeRepository.save(employee);
+        else return employeeRepository.save(employee);
     }
 
     public Employee getEmployeeById(int id) {
@@ -53,6 +53,8 @@ public class EmployeeService {
         return employeeRepository.getEmployeesByPage(page, pageSize);
     }
     public void deleteEmployee(int id) {
-        employeeRepository.deleteEmployee(id);
+        Employee employee=employeeRepository.findById(id);
+        employee.setIsActive(false);
+        employeeRepository.setAEmployee(id,employee);
     }
 }
