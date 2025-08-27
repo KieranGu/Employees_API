@@ -165,7 +165,6 @@ public class EmployeeServiceTest {
     public void update_employee_age_and_salary(){
         //Given
         Employee employee= new Employee(1,"John Smith",32,"MALE",5000.0);
-        Employee mockedEmployee =new Employee(1,employee.getEmployeeName(),35,employee.getGender(),6000.0);
         when(employeeRepository.findById(1)).thenReturn(employee);
 
         //When
@@ -177,4 +176,15 @@ public class EmployeeServiceTest {
 
     }
 
+    @Test
+    public void update_inactive_employee_age_and_salary_and_failed(){
+        //Given
+        Employee employee= new Employee(1,"John Smith",32,"MALE",5000.0);
+        when(employeeRepository.findById(1)).thenReturn(employee);
+
+        //When
+        employeeService.deleteEmployee(1);
+        IllegalArgumentException exception=assertThrows(IllegalArgumentException.class,
+                ()->employeeService.updateEmployeeAgeandSalary(1,35,6000.0));
+    }
 }
