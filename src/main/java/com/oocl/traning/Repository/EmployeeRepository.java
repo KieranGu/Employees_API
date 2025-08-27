@@ -3,10 +3,7 @@ package com.oocl.traning.Repository;
 import com.oocl.traning.Model.Employee;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Repository
 public class EmployeeRepository {
@@ -39,5 +36,25 @@ public class EmployeeRepository {
             }
         }
         return genderEmployees;
+    }
+    public void updateEmployeeAgeandSalary(int id, int age, double salary)
+    {
+        Employee employee = allEmployees.get(id);
+        if (employee != null) {
+            employee.setAge(age);
+            employee.setSalary(salary);
+        }
+    }
+    public List<Employee> getEmployeesByPage(int page, int pageSize) {
+        List<Employee> employees = new ArrayList<>(allEmployees.values());
+        int fromIndex = (page - 1) * pageSize;
+        int toIndex = Math.min(fromIndex + pageSize, employees.size());
+        if (fromIndex >= employees.size() || fromIndex < 0) {
+            return Collections.emptyList();
+        }
+        return employees.subList(fromIndex, toIndex);
+    }
+    public void deleteEmployee(int id) {
+        allEmployees.remove(id);
     }
 }

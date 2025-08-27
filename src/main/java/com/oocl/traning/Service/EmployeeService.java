@@ -34,4 +34,15 @@ public class EmployeeService {
         }
         return employeeRepository.findGender(gender);
     }
+
+    public void updateEmployeeAgeandSalary(int id, int age, double salary) {
+        employeeRepository.updateEmployeeAgeandSalary(id, age, salary);
+    }
+
+    public List<Employee> getEmployeesByPage(int page, int pageSize) {
+        return employeeRepository.getEmployeesByPage(page, pageSize);
+    }
+    public void deleteEmployee(int id) {
+        employeeRepository.deleteEmployee(id);
+    }
 }

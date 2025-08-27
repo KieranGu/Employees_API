@@ -54,49 +54,30 @@ public class CompanyController {
     }
 
     @GetMapping("/employees")
-    public ArrayList<Employee> getAllMaleEmployees(@RequestParam(required = false) String gender) {
-        if (gender == null || gender.isEmpty()) {
-            return (ArrayList<Employee>) allEmployees.values(); // 返回所有员工
-        }
-        List<Employee> maleEmployees = new ArrayList<>();
-        List<Employee> employees = new ArrayList<>(allEmployees.values());
-
-        for (Employee employee : employees) {
-            if (Objects.equals(employee.getGender(), gender)) {
-                maleEmployees.add(employee);
-            }
-        }
-        return (ArrayList<Employee>) maleEmployees;
+    public List<Employee> getAllMaleEmployees(@RequestParam(required = false) String gender) {
+        return employeeService.getEmployeesByGender(gender);
     }
 
     @GetMapping("/employees")
-    public ArrayList<Employee> getAllEmployees() {
-        return new ArrayList<>(allEmployees.values());
+    public List<Employee> getAllEmployees() {
+        return employeeService.getAllEmployees();
     }
 
     @PutMapping("/employees/{id}")
     public void updateEmployeeAgeandSalary(@PathVariable int id, @RequestBody int salary,int age) {
-        Employee employee = allEmployees.get(id);
-        employee.setAge(age);
-        employee.setSalary(salary);
+        employeeService.updateEmployeeAgeandSalary(id, age, salary);
     }
 
 
     @GetMapping("/employees")
-    public ArrayList<Employee> getEmployeesByPage(@RequestBody int page,int pageSize) {
-        ArrayList<Employee> employeesByPage = new ArrayList<>();
-        int start = (page - 1) * pageSize;
-        int end = Math.min(start + pageSize, allEmployees.size());
-        for (int i = start; i < end; i++) {
-            employeesByPage.add(allEmployees.get(i));
-        }
-        return employeesByPage;
+    public List<Employee> getEmployeesByPage(@RequestBody int page,int pageSize) {
+        return employeeService.getEmployeesByPage(page, pageSize);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteEmployee(@PathVariable int id) {
-        allEmployees.remove(id);
+        employeeService.deleteEmployee(id);
     }
 
     @GetMapping("/companies")
