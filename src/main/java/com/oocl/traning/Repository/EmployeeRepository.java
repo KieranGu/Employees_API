@@ -55,6 +55,8 @@ public class EmployeeRepository {
         return employees.subList(fromIndex, toIndex);
     }
     public void deleteEmployee(int id) {
-        allEmployees.remove(id);
+        Employee employee=allEmployees.get(id);
+        employee.setIsActive(false);
+        allEmployees.put(id, employee);
     }
 }
