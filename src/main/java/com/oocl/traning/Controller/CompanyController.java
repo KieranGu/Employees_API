@@ -1,7 +1,9 @@
 package com.oocl.traning.Controller;
 
-import ch.qos.logback.core.joran.sanity.Pair;
-import jakarta.websocket.server.PathParam;
+import com.oocl.traning.Model.Company;
+import com.oocl.traning.Model.Employee;
+import com.oocl.traning.Repository.EmployeeRepository;
+import com.oocl.traning.Service.EmployeeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,7 +11,7 @@ import java.util.List;
 import java.util.*;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/employees")
 public class CompanyController {
 //    private final static Map<Integer, Company> companies = new HashMap<>();
     private final HashMap<Integer, Company> companies = new HashMap<>(Map.of(
@@ -27,30 +29,28 @@ public class CompanyController {
             5, new Company(5, "Nexus Industries")
     ));
 //    private final static Map<Integer, Employee> allEmployees = new HashMap<>();
+    private EmployeeService employeeService;
 
-    private final Map<Integer, Employee> allEmployees = new HashMap<>(Map.of(
-            1, new Employee(1, "John Smith", 32, "MALE", 5000.0),
-            2, new Employee(2, "Jane Johnson", 28, "FEMALE", 6000.0),
-            3, new Employee(3, "David Williams", 35, "MALE", 5500.0),
-            4, new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0),
-            5, new Employee(5, "Michael Jones", 40, "MALE", 7000.0)));
+    public CompanyController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
+
+//    private final Map<Integer, Employee> allEmployees = new HashMap<>(Map.of(
+//            1, new Employee(1, "John Smith", 32, "MALE", 5000.0),
+//            2, new Employee(2, "Jane Johnson", 28, "FEMALE", 6000.0),
+//            3, new Employee(3, "David Williams", 35, "MALE", 5500.0),
+//            4, new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0),
+//            5, new Employee(5, "Michael Jones", 40, "MALE", 7000.0)));
 
     @PostMapping("/employees")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveEmployee(@RequestBody Employee employee) {
-        employee.setEmployeeID(allEmployees.size() + 1);
-        allEmployees.put(allEmployees.size() + 1, employee);
+        employeeService.createEmployee(employee);
     }
 
     @GetMapping("/employees/{id}")
     public Employee getEmployeeById(@PathVariable int id) {
-        List<Employee> employees = new ArrayList<>(allEmployees.values());
-        for (Employee employee : employees) {
-            if (employee.getEmployeeID() == id) {
-                return employee;
-            }
-        }
-        return null;
+        return employeeService.getEmployeeById(id);
     }
 
     @GetMapping("/employees")

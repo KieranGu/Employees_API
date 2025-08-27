@@ -1,4 +1,4 @@
-package com.oocl.traning.Controller;
+package com.oocl.traning.Model;
 
 public class Employee {
     private int employeeID;
