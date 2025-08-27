@@ -16,6 +16,8 @@ public class EmployeeRepository {
 
 
     public void save(Employee newEemployee) {
+        int id= Collections.max(allEmployees.keySet()) + 1;
+        newEemployee.setEmployeeID(id);
         allEmployees.put(newEemployee.getEmployeeID(), newEemployee);
     }
     public Map<Integer, Employee> getAllEmployees() {
