@@ -10,20 +10,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1")
 public class EmployeeController {
-//    private final static Map<Integer, Company> companies = new HashMap<>();
-//    private final static Map<Integer, Employee> allEmployees = new HashMap<>();
+
     private EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
-//    private final Map<Integer, Employee> allEmployees = new HashMap<>(Map.of(
-//            1, new Employee(1, "John Smith", 32, "MALE", 5000.0),
-//            2, new Employee(2, "Jane Johnson", 28, "FEMALE", 6000.0),
-//            3, new Employee(3, "David Williams", 35, "MALE", 5500.0),
-//            4, new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0),
-//            5, new Employee(5, "Michael Jones", 40, "MALE", 7000.0)));
+
 
     @PostMapping("/employees")
     @ResponseStatus(HttpStatus.CREATED)

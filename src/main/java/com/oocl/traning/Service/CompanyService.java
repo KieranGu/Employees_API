@@ -2,6 +2,7 @@ package com.oocl.traning.Service;
 
 import com.oocl.traning.Model.Company;
 import com.oocl.traning.Model.Employee;
+import com.oocl.traning.Repository.CompanyDbRepository;
 import com.oocl.traning.Repository.CompanyRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,37 +11,38 @@ import java.util.List;
 
 @Service
 public class CompanyService {
-    private final CompanyRepository companyRepository;
+    private final CompanyRepository companyDbRepository;
 
-    public CompanyService(CompanyRepository companyRepository) {
-        this.companyRepository = companyRepository;
+
+    public CompanyService(CompanyDbRepository companyDbRepository) {
+        this.companyDbRepository = companyDbRepository;
     }
 
     public void saveCompany(Company company) {
-        companyRepository.saveCompany(company);
+        companyDbRepository.saveCompany(company);
     }
 
     public String getAllCompaniesWithoutEmployees() {
-        return companyRepository.getAllCompaniesWithoutEmployee();
+        return companyDbRepository.getAllCompaniesWithoutEmployee();
     }
 
     public String getCompanyById(int id) {
-        return companyRepository.getCompanyById(id);
+        return companyDbRepository.getCompanyById(id);
     }
 
     public List<Employee> getCompanyEmployeesById(int id) {
-        return companyRepository.getCompanyEmployeesById(id);
+        return companyDbRepository.getCompanyEmployeesById(id);
     }
 
     public ArrayList<Company> getCompaniesByPage(int page, int pageSize) {
-        return companyRepository.getCompaniesByPage(page, pageSize);
+        return companyDbRepository.getCompaniesByPage(page, pageSize);
     }
 
     public void updateCompanyName(int id, Company company){
-        if(company.getId()==id) companyRepository.updateCompanyName(id,company);
+        if(company.getId()==id) companyDbRepository.updateCompanyName(id,company);
     }
 
     public void deleteCompany(int id){
-        companyRepository.deleteCompany(id);
+        companyDbRepository.deleteCompany(id);
     }
 }
