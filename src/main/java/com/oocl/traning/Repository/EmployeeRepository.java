@@ -16,7 +16,11 @@ public class EmployeeRepository {
 
 
     public Employee save(Employee newEemployee) {
-        int id= Collections.max(allEmployees.keySet()) + 1;
+        int id;
+        if (!allEmployees.isEmpty()) {
+            id= Collections.max(allEmployees.keySet()) + 1;
+        }
+        else id=1;
         newEemployee.setEmployeeID(id);
         return allEmployees.put(newEemployee.getEmployeeID(), newEemployee);
     }
@@ -64,5 +68,9 @@ public class EmployeeRepository {
     public void setAEmployee(Integer id,Employee employee)
     {
         allEmployees.put(id,employee);
+    }
+
+    public void clear() {
+        allEmployees.clear();
     }
 }
