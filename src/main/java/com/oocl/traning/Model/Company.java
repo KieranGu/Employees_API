@@ -1,8 +1,13 @@
 package com.oocl.traning.Model;
 
+import jakarta.persistence.Entity;
+
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name = "company")
 public class Company {
     private int id;
     private String name;

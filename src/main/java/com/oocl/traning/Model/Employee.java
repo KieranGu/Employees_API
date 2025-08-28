@@ -1,6 +1,12 @@
 package com.oocl.traning.Model;
 
+import jakarta.persistence.*;
+
+@Entity//与某张表产生映射关系
+@Table(name="employee")//指定映射的表名
 public class Employee {
+    @Id//主键
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//主键生成策略
     private Integer employeeID;
     private String employeeName;
     private String gender;
