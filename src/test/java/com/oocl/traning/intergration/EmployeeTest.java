@@ -16,6 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.springframework.http.MediaType;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -90,6 +91,19 @@ public class EmployeeTest {
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[1].gender").value("MALE"));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[2].employeeID").value(givenEmployees.get(2).getEmployeeID()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[2].gender").value("MALE"));
+    }
+
+    @Test
+    public void should_throw_excepition_when_invalid_employee() throws Exception{
+        //Given
+        String jsonBody="{ \"salary\": 10000.0,\"age\": 15  }";
+        //When
+        ResultActions perform= client.perform(MockMvcRequestBuilders.put("/api/v1/employees/1")
+                .content(jsonBody)
+                .contentType(MediaType.APPLICATION_JSON));
+        //Then
+        perform.andExpect(MockMvcResultMatchers.status().isBadRequest());
+
     }
 
 }

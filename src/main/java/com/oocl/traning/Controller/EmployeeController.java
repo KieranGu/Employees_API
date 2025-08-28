@@ -50,7 +50,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/employees/{id}")
-    public void updateEmployeeAgeandSalary(@PathVariable int id, @RequestBody int salary,int age) {
+    public void updateEmployeeAgeandSalary(@PathVariable int id, @RequestBody double salary,int age) {
         employeeService.updateEmployeeAgeandSalary(id, age, salary);
     }
 

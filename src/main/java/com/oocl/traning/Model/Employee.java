@@ -10,7 +10,7 @@ public class Employee {
 
     public Employee() {
     }
-    public Employee(int employeeID,String employeeName,int age,String gender,double salary){
+    public Employee(Integer employeeID,String employeeName,int age,String gender,double salary){
         this.employeeID=employeeID;
         this.employeeName=employeeName;
         this.gender=gender;
@@ -27,7 +27,7 @@ public class Employee {
     public int getEmployeeID() {
         return employeeID;
     }
-    public void setEmployeeID(int employeeID) {
+    public void setEmployeeID(Integer employeeID) {
         this.employeeID = employeeID;
     }
     public String getEmployeeName() {

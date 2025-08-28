@@ -46,7 +46,16 @@ public class EmployeeService {
         if(originEmployee.getIsActive()){
             originEmployee.setSalary(salary);
             originEmployee.setAge(age);
+
+            if(originEmployee.getAge()>=65||originEmployee.getAge()<=18){
+                throw new IllegalArgumentException("Age must be between 18 and 65");
+            }
+            else if(originEmployee.getAge()>=30 && originEmployee.getSalary()<20000) {
+                throw new IllegalArgumentException("Salary must be at least 20000 for employees over 30 years old");
+            }
+
             employeeRepository.setAEmployee(id,originEmployee);
+
         }
         else throw new IllegalArgumentException("Employee is not active");
     }
