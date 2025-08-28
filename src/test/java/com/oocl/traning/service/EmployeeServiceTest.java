@@ -1,14 +1,13 @@
 package com.oocl.traning.service;
 
 import com.oocl.traning.Model.Employee;
-import com.oocl.traning.Repository.EmployeeRepository;
+import com.oocl.traning.Repository.EmployeeMemoryRepository;
 import com.oocl.traning.Service.EmployeeService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.internal.matchers.Equals;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.*;
@@ -22,7 +21,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(SpringExtension.class)//关联spring
 public class EmployeeServiceTest {
     @Mock
-    private EmployeeRepository employeeRepository;
+    private EmployeeMemoryRepository employeeMemoryRepository;
 
     @InjectMocks//注入Service
     private EmployeeService employeeService;
@@ -31,7 +30,7 @@ public class EmployeeServiceTest {
         //Given
         Employee employee=new Employee("oocl",20,"MALE",10000);
         Employee mockedEmployee =new Employee(1,employee.getEmployeeName(),employee.getAge(),employee.getGender(),employee.getSalary());
-        when(employeeRepository.save(Mockito.any(Employee.class)))
+        when(employeeMemoryRepository.save(Mockito.any(Employee.class)))
                 .thenReturn(mockedEmployee);//这段不懂嘞
         //Mockito.when(...):当某个方法被调用时，应该返回什么
         //Mockito.any(Employee.class):无论传入什么 Employee 对象，都匹配成功
@@ -73,7 +72,7 @@ public class EmployeeServiceTest {
         Employee employee=new Employee("oocl22",20,"MALE",10000);
         Employee mockedEmployee =new Employee(1,employee.getEmployeeName(),employee.getAge(),employee.getGender(),employee.getSalary());
         employeeService.createEmployee(employee);
-        when(employeeRepository.findById(Mockito.anyInt()))
+        when(employeeMemoryRepository.findById(Mockito.anyInt()))
                 .thenReturn(mockedEmployee);
         //When
         Employee savedEmployee=employeeService.getEmployeeById(1);
@@ -93,7 +92,7 @@ public class EmployeeServiceTest {
                 4, new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0),
                 5, new Employee(5, "Michael Jones", 40, "MALE", 7000.0)));
         ArrayList<Employee> employeeArrayList = new ArrayList<>(allEmployees.values());
-        when(employeeRepository.findAll())
+        when(employeeMemoryRepository.findAll())
                 .thenReturn(employeeArrayList);
         //When
         List<Employee> savedEmployees=employeeService.getAllEmployees();
@@ -107,14 +106,14 @@ public class EmployeeServiceTest {
         //Given
         Employee employee= new Employee(1,"John Smith",32,"MALE",5000.0);
 
-        when(employeeRepository.findById(1)).thenReturn(employee);
+        when(employeeMemoryRepository.findById(1)).thenReturn(employee);
 
         //When
         employeeService.deleteEmployee(1);//由于上面的方法规定把employee返回了，所以一开始定义的employee已经被修改
         //Then
         assertFalse(employee.getIsActive());
-        verify(employeeRepository,times(1)).findById(1);
-        verify(employeeRepository,times(1)).setAEmployee(1,employee);
+        verify(employeeMemoryRepository,times(1)).findById(1);
+        verify(employeeMemoryRepository,times(1)).setAEmployee(1,employee);
     }
 
     @Test
@@ -133,9 +132,9 @@ public class EmployeeServiceTest {
                 maleEmployees.add(employee);
             }
         }
-        when(employeeRepository.findAll())
+        when(employeeMemoryRepository.findAll())
                 .thenReturn(employeeArrayList);
-        when(employeeRepository.findGender("male")).thenReturn(maleEmployees);
+        when(employeeMemoryRepository.findGender("male")).thenReturn(maleEmployees);
         //When
         List<Employee> getEmployee=employeeService.getEmployeesByGender("male");
 
@@ -153,7 +152,7 @@ public class EmployeeServiceTest {
                 4, new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0),
                 5, new Employee(5, "Michael Jones", 40, "MALE", 7000.0)));
         ArrayList<Employee> employeeArrayList = new ArrayList<>(allEmployees.values());
-        when(employeeRepository.findAll())
+        when(employeeMemoryRepository.findAll())
                 .thenReturn(employeeArrayList);
         //When
         List<Employee> getEmployee=employeeService.getEmployeesByGender("");
@@ -165,14 +164,14 @@ public class EmployeeServiceTest {
     public void update_employee_age_and_salary(){
         //Given
         Employee employee= new Employee(1,"John Smith",32,"MALE",5000.0);
-        when(employeeRepository.findById(1)).thenReturn(employee);
+        when(employeeMemoryRepository.findById(1)).thenReturn(employee);
 
         //When
         employeeService.updateEmployeeAgeandSalary(1,35,6000.0);
         //Then
         assertEquals(35,employee.getAge());
         assertEquals(6000.0,employee.getSalary());
-        verify(employeeRepository,times(1)).setAEmployee(1,employee);
+        verify(employeeMemoryRepository,times(1)).setAEmployee(1,employee);
 
     }
 
@@ -180,7 +179,7 @@ public class EmployeeServiceTest {
     public void update_inactive_employee_age_and_salary_and_failed(){
         //Given
         Employee employee= new Employee(1,"John Smith",32,"MALE",5000.0);
-        when(employeeRepository.findById(1)).thenReturn(employee);
+        when(employeeMemoryRepository.findById(1)).thenReturn(employee);
 
         //When
         employeeService.deleteEmployee(1);

@@ -1,19 +1,17 @@
 package com.oocl.traning.Service;
 
 import com.oocl.traning.Model.Employee;
-import com.oocl.traning.Repository.EmployeeRepository;
+import com.oocl.traning.Repository.EmployeeMemoryRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class EmployeeService {
-    private final EmployeeRepository employeeRepository;
+    private final EmployeeMemoryRepository employeeMemoryRepository;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    public EmployeeService(EmployeeMemoryRepository employeeMemoryRepository) {
+        this.employeeMemoryRepository = employeeMemoryRepository;
     }
 
     public Employee createEmployee(Employee employee) {
@@ -23,26 +21,26 @@ public class EmployeeService {
         else if(employee.getAge()>=30 && employee.getSalary()<20000) {
             throw new IllegalArgumentException("Salary must be at least 20000 for employees over 30 years old");
         }
-        else return employeeRepository.save(employee);
+        else return employeeMemoryRepository.save(employee);
     }
 
     public Employee getEmployeeById(int id) {
-        return employeeRepository.findById(id);
+        return employeeMemoryRepository.findById(id);
     }
 
     public List<Employee> getAllEmployees() {
-        return employeeRepository.findAll();
+        return employeeMemoryRepository.findAll();
     }
     public List<Employee> getEmployeesByGender(String gender)
     {
         if (gender == null || gender.isEmpty()) {
-            return employeeRepository.findAll();// 返回所有员工
+            return employeeMemoryRepository.findAll();// 返回所有员工
         }
-        return employeeRepository.findGender(gender);
+        return employeeMemoryRepository.findGender(gender);
     }
 
     public void updateEmployeeAgeandSalary(int id, int age, double salary) {
-        Employee originEmployee=employeeRepository.findById(id);
+        Employee originEmployee= employeeMemoryRepository.findById(id);
         if(originEmployee.getIsActive()){
             originEmployee.setSalary(salary);
             originEmployee.setAge(age);
@@ -54,18 +52,18 @@ public class EmployeeService {
                 throw new IllegalArgumentException("Salary must be at least 20000 for employees over 30 years old");
             }
 
-            employeeRepository.setAEmployee(id,originEmployee);
+            employeeMemoryRepository.setAEmployee(id,originEmployee);
 
         }
         else throw new IllegalArgumentException("Employee is not active");
     }
 
     public List<Employee> getEmployeesByPage(int page, int pageSize) {
-        return employeeRepository.getEmployeesByPage(page, pageSize);
+        return employeeMemoryRepository.getEmployeesByPage(page, pageSize);
     }
     public void deleteEmployee(int id) {
-        Employee employee=employeeRepository.findById(id);
+        Employee employee= employeeMemoryRepository.findById(id);
         employee.setIsActive(false);
-        employeeRepository.setAEmployee(id,employee);
+        employeeMemoryRepository.setAEmployee(id,employee);
     }
 }

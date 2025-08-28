@@ -1,11 +1,10 @@
 package com.oocl.traning.intergration;
 
 import com.oocl.traning.Model.Employee;
-import com.oocl.traning.Repository.EmployeeRepository;
+import com.oocl.traning.Repository.EmployeeMemoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.core.AutoConfigureCache;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
@@ -13,9 +12,8 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 import org.springframework.http.MediaType;
 
 @SpringBootTest
@@ -25,23 +23,23 @@ public class EmployeeTest {
     private MockMvc client;
 
     @Autowired
-    private EmployeeRepository employeeRepository;
+    private EmployeeMemoryRepository employeeMemoryRepository;
 
     @BeforeEach
     void setUp(){
-        employeeRepository.clear();
-        employeeRepository.save(new Employee(1, "John Smith", 32, "MALE", 5000.0));
-        employeeRepository.save(new Employee(2, "Jane Johnson", 28, "FEMALE", 6000.0));
-        employeeRepository.save(new Employee(3, "David Williams", 35, "MALE", 5500.0));
-        employeeRepository.save(new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0));
-        employeeRepository.save(new Employee(5, "Michael Jones", 40, "MALE", 7000.0));
+        employeeMemoryRepository.clear();
+        employeeMemoryRepository.save(new Employee(1, "John Smith", 32, "MALE", 5000.0));
+        employeeMemoryRepository.save(new Employee(2, "Jane Johnson", 28, "FEMALE", 6000.0));
+        employeeMemoryRepository.save(new Employee(3, "David Williams", 35, "MALE", 5500.0));
+        employeeMemoryRepository.save(new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0));
+        employeeMemoryRepository.save(new Employee(5, "Michael Jones", 40, "MALE", 7000.0));
 
     }
 
     @Test
     public void should_return_employees_when_get_all_employees() throws Exception {
         //Given
-        List<Employee> givenEmployees=employeeRepository.findAll();
+        List<Employee> givenEmployees= employeeMemoryRepository.findAll();
         //When
         ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees"));
         //Then
@@ -61,7 +59,7 @@ public class EmployeeTest {
     @Test
     public void should_return_a_empoloyee_when_find_by_id() throws Exception{
         //Given
-        Employee givenEmployees=employeeRepository.findById(2);
+        Employee givenEmployees= employeeMemoryRepository.findById(2);
         //When
         ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees/2"));
         //Then
@@ -76,7 +74,7 @@ public class EmployeeTest {
     @Test
     public void should_return_a_empoloyee_when_find_by_gender() throws Exception{
         //Given
-        List<Employee> givenEmployees=employeeRepository.findGender("MALE");
+        List<Employee> givenEmployees= employeeMemoryRepository.findGender("MALE");
         //When
         ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees?gender=MALE"));
         //Then
