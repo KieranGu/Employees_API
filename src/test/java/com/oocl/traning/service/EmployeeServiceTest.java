@@ -1,9 +1,7 @@
 package com.oocl.traning.service;
 
-import com.oocl.traning.Model.Employee;
-import com.oocl.traning.Repository.EmployeeDbRepository;
-import com.oocl.traning.Repository.EmployeeMemoryRepository;
-import com.oocl.traning.Service.EmployeeService;
+import com.oocl.traning.model.Employee;
+import com.oocl.traning.repository.EmployeeDbRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

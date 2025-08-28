@@ -1,9 +1,9 @@
-package com.oocl.traning.Service;
+package com.oocl.traning.service;
 
-import com.oocl.traning.Model.Company;
-import com.oocl.traning.Model.Employee;
-import com.oocl.traning.Repository.CompanyDbRepository;
-import com.oocl.traning.Repository.CompanyRepository;
+import com.oocl.traning.model.Company;
+import com.oocl.traning.model.Employee;
+import com.oocl.traning.repository.CompanyDbRepository;
+import com.oocl.traning.repository.CompanyRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

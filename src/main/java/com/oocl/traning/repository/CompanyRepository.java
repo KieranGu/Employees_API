@@ -1,7 +1,7 @@
-package com.oocl.traning.Repository;
+package com.oocl.traning.repository;
 
-import com.oocl.traning.Model.Company;
-import com.oocl.traning.Model.Employee;
+import com.oocl.traning.model.Company;
+import com.oocl.traning.model.Employee;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;

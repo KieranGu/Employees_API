@@ -1,8 +1,7 @@
 package com.oocl.traning.intergration;
 
-import com.oocl.traning.Model.Employee;
-import com.oocl.traning.Repository.EmployeeDbRepository;
-import com.oocl.traning.Repository.EmployeeMemoryRepository;
+import com.oocl.traning.model.Employee;
+import com.oocl.traning.repository.EmployeeDbRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

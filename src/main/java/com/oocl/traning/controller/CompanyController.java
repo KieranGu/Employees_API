@@ -1,8 +1,8 @@
-package com.oocl.traning.Controller;
+package com.oocl.traning.controller;
 
-import com.oocl.traning.Model.Company;
-import com.oocl.traning.Model.Employee;
-import com.oocl.traning.Service.CompanyService;
+import com.oocl.traning.model.Company;
+import com.oocl.traning.model.Employee;
+import com.oocl.traning.service.CompanyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

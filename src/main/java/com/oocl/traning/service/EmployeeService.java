@@ -1,8 +1,8 @@
-package com.oocl.traning.Service;
+package com.oocl.traning.service;
 
-import com.oocl.traning.Model.Employee;
-import com.oocl.traning.Repository.EmployeeDbRepository;
-import com.oocl.traning.Repository.EmployeeRepository;
+import com.oocl.traning.model.Employee;
+import com.oocl.traning.repository.EmployeeDbRepository;
+import com.oocl.traning.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

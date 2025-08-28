@@ -1,9 +1,8 @@
-package com.oocl.traning.Repository;
+package com.oocl.traning.repository;
 
-import com.oocl.traning.Model.Employee;
+import com.oocl.traning.model.Employee;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 

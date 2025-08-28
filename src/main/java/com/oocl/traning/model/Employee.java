@@ -1,4 +1,4 @@
-package com.oocl.traning.Model;
+package com.oocl.traning.model;
 
 import jakarta.persistence.*;
 
