@@ -1,6 +1,7 @@
 package com.oocl.traning.intergration;
 
 import com.oocl.traning.Model.Employee;
+import com.oocl.traning.Repository.EmployeeDbRepository;
 import com.oocl.traning.Repository.EmployeeMemoryRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,23 +24,23 @@ public class EmployeeTest {
     private MockMvc client;
 
     @Autowired
-    private EmployeeMemoryRepository employeeMemoryRepository;
+    private EmployeeDbRepository employeeDbRepository;
 
     @BeforeEach
     void setUp(){
-        employeeMemoryRepository.clear();
-        employeeMemoryRepository.save(new Employee(1, "John Smith", 32, "MALE", 5000.0));
-        employeeMemoryRepository.save(new Employee(2, "Jane Johnson", 28, "FEMALE", 6000.0));
-        employeeMemoryRepository.save(new Employee(3, "David Williams", 35, "MALE", 5500.0));
-        employeeMemoryRepository.save(new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0));
-        employeeMemoryRepository.save(new Employee(5, "Michael Jones", 40, "MALE", 7000.0));
+        employeeDbRepository.clear();
+        employeeDbRepository.save(new Employee(1, "John Smith", 32, "MALE", 5000.0));
+        employeeDbRepository.save(new Employee(2, "Jane Johnson", 28, "FEMALE", 6000.0));
+        employeeDbRepository.save(new Employee(3, "David Williams", 35, "MALE", 5500.0));
+        employeeDbRepository.save(new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0));
+        employeeDbRepository.save(new Employee(5, "Michael Jones", 40, "MALE", 7000.0));
 
     }
 
     @Test
     public void should_return_employees_when_get_all_employees() throws Exception {
         //Given
-        List<Employee> givenEmployees= employeeMemoryRepository.findAll();
+        List<Employee> givenEmployees= employeeDbRepository.findAll();
         //When
         ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees"));
         //Then
@@ -59,7 +60,7 @@ public class EmployeeTest {
     @Test
     public void should_return_a_empoloyee_when_find_by_id() throws Exception{
         //Given
-        Employee givenEmployees= employeeMemoryRepository.findById(2);
+        Employee givenEmployees= employeeDbRepository.findById(2);
         //When
         ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees/2"));
         //Then
@@ -74,7 +75,7 @@ public class EmployeeTest {
     @Test
     public void should_return_a_empoloyee_when_find_by_gender() throws Exception{
         //Given
-        List<Employee> givenEmployees= employeeMemoryRepository.findGender("MALE");
+        List<Employee> givenEmployees= employeeDbRepository.findGender("MALE");
         //When
         ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees?gender=MALE"));
         //Then
