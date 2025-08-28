@@ -82,15 +82,14 @@ public class EmployeeTest {
         perform.andExpect(MockMvcResultMatchers.status().isOk());
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].employeeID").value(givenEmployees.get(0).getEmployeeID()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].employeeName").value(givenEmployees.get(0).getEmployeeName()));
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].gender").value(givenEmployees.get(0).getGender()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].gender").value("MALE"));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].age").value(givenEmployees.get(0).getAge()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].salary").value(givenEmployees.get(0).getSalary()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].isActive").value(givenEmployees.get(0).getIsActive()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[1].employeeID").value(givenEmployees.get(1).getEmployeeID()));
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[1].gender").value(givenEmployees.get(1).getGender()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[1].gender").value("MALE"));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[2].employeeID").value(givenEmployees.get(2).getEmployeeID()));
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[2].gender").value(givenEmployees.get(2).getGender()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[2].gender").value("MALE"));
     }
-
 
 }
