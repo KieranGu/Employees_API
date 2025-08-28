@@ -45,6 +45,7 @@ public class CompanyController {
     }
 
     @PutMapping("/companies/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateCompanyName(@PathVariable int id, @RequestBody Company company) {
         companyService.updateCompanyName(id,company);
     }

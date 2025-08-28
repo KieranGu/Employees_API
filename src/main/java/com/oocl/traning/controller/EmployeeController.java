@@ -41,6 +41,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/employees/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updateEmployeeAgeandSalary(@PathVariable int id, @RequestBody double salary,int age) {
         employeeService.updateEmployeeAgeandSalary(id, age, salary);
     }
