@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 @Repository
-public class CompanyMemoryRepository {
+public class CompanyMemoryRepository implements CompanyRepository {
     private final Map<Integer, Company> companies = new HashMap<>(Map.of(
             1, new Company(1, "Acme Corporation", List.of(
                     new Employee(1, "John Smith", 32, "MALE", 5000.0),
