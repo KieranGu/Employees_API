@@ -56,4 +56,21 @@ public class EmployeeTest {
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[4].employeeID").value(givenEmployees.get(4).getEmployeeID()));
 
     }
+
+    @Test
+    public void should_return_a_empoloyee_when_find_by_id() throws Exception{
+        //Given
+        Employee givenEmployees=employeeRepository.findById(2);
+        //When
+        ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees/2"));
+        //Then
+        perform.andExpect(MockMvcResultMatchers.status().isOk());
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.employeeID").value(givenEmployees.getEmployeeID()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.employeeName").value(givenEmployees.getEmployeeName()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.age").value(givenEmployees.getAge()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.salary").value(givenEmployees.getSalary()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.isActive").value(givenEmployees.getIsActive()));
+    }
+
+
 }
