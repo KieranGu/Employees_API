@@ -7,34 +7,38 @@ import jakarta.persistence.*;
 public class Employee {
     @Id//主键
     @GeneratedValue(strategy = GenerationType.IDENTITY)//主键生成策略
-    private Integer employeeID;
+    private Integer employeeId;
     private String employeeName;
     private String gender;
     private int age;
     private double salary;
     private Boolean isActive =true;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name="company_id")
+//    private Company company;
+
     public Employee() {
     }
     public Employee(Integer employeeID,String employeeName,int age,String gender,double salary){
-        this.employeeID=employeeID;
+        this.employeeId=employeeID;
         this.employeeName=employeeName;
         this.gender=gender;
         this.age=age;
         this.salary=salary;
     }
     public Employee(String employeeName,int age,String gender,double salary){
-        this.employeeID=null;
+        this.employeeId=null;
         this.employeeName=employeeName;
         this.gender=gender;
         this.age=age;
         this.salary=salary;
     }
-    public int getEmployeeID() {
-        return employeeID;
+    public int getEmployeeId() {
+        return employeeId;
     }
-    public void setEmployeeID(Integer employeeID) {
-        this.employeeID = employeeID;
+    public void setEmployeeId(Integer employeeID) {
+        this.employeeId = employeeID;
     }
     public String getEmployeeName() {
         return employeeName;

@@ -23,4 +23,5 @@ public interface CompanyRepository {
     void updateCompanyName(int id, Company company);
 
     void deleteCompany(int id);
+    void clear();
 }

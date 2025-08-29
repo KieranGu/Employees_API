@@ -45,4 +45,8 @@ public class CompanyService {
     public void deleteCompany(int id){
         companyDbRepository.deleteCompany(id);
     }
+
+    public List<Company> getAllCompanies() {
+        return companyDbRepository.getAllCompanies();
+    }
 }

@@ -18,8 +18,8 @@ public class CompanyController {
     }
 
     @GetMapping(value = "/companies",params = {})
-    public String getAllCompanies() {
-        return companyService.getAllCompaniesWithoutEmployees();
+    public List<Company> getAllCompanies() {
+        return companyService.getAllCompanies();
     }
 
     @GetMapping("/companies/{id}")

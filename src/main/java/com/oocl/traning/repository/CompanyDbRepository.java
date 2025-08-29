@@ -9,7 +9,9 @@ import java.util.List;
 
 @Repository
 public class CompanyDbRepository implements CompanyRepository {
+
     private final JPACompanyRepository jpaCompanyRepository;
+
     public CompanyDbRepository(JPACompanyRepository jpaCompanyRepository) {
         this.jpaCompanyRepository = jpaCompanyRepository;
     }
@@ -69,5 +71,10 @@ public class CompanyDbRepository implements CompanyRepository {
     @Override
     public void deleteCompany(int id) {
         jpaCompanyRepository.deleteById(id);
+    }
+
+    @Override
+    public void clear() {
+        jpaCompanyRepository.deleteAll();
     }
 }

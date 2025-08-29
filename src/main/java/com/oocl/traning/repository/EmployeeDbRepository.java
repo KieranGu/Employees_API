@@ -25,7 +25,7 @@ public class EmployeeDbRepository implements EmployeeRepository {
 
     @Override
     public Map<Integer, Employee> getAllEmployees() {
-        return jpaEmployeeRepository.findAll().stream().collect(java.util.stream.Collectors.toMap(Employee::getEmployeeID, employee -> employee));
+        return jpaEmployeeRepository.findAll().stream().collect(java.util.stream.Collectors.toMap(Employee::getEmployeeId, employee -> employee));
     }
 
     @Override
@@ -66,7 +66,7 @@ public class EmployeeDbRepository implements EmployeeRepository {
 
     @Override
     public void setAEmployee(Integer id, Employee employee) {
-        employee.setEmployeeID(id);
+        employee.setEmployeeId(id);
         jpaEmployeeRepository.save(employee);
     }
 

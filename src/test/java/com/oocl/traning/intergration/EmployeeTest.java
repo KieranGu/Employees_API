@@ -28,11 +28,11 @@ public class EmployeeTest {
     @BeforeEach
     void setUp(){
         employeeDbRepository.clear();
-        employeeDbRepository.save(new Employee(1, "John Smith", 32, "MALE", 5000.0));
-        employeeDbRepository.save(new Employee(2, "Jane Johnson", 28, "FEMALE", 6000.0));
-        employeeDbRepository.save(new Employee(3, "David Williams", 35, "MALE", 5500.0));
-        employeeDbRepository.save(new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0));
-        employeeDbRepository.save(new Employee(5, "Michael Jones", 40, "MALE", 7000.0));
+        employeeDbRepository.save(new Employee("John Smith", 32, "MALE", 5000.0));
+        employeeDbRepository.save(new Employee( "Jane Johnson", 28, "FEMALE", 6000.0));
+        employeeDbRepository.save(new Employee( "David Williams", 35, "MALE", 5500.0));
+        employeeDbRepository.save(new Employee( "Emily Brown", 23, "FEMALE", 4500.0));
+        employeeDbRepository.save(new Employee( "Michael Jones", 40, "MALE", 7000.0));
 
     }
 
@@ -44,27 +44,28 @@ public class EmployeeTest {
         ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees"));
         //Then
         perform.andExpect(MockMvcResultMatchers.status().isOk());
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].employeeID").value(givenEmployees.get(0).getEmployeeID()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].employeeId").value(givenEmployees.get(0).getEmployeeId()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].employeeName").value(givenEmployees.get(0).getEmployeeName()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].age").value(givenEmployees.get(0).getAge()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].gender").value(givenEmployees.get(0).getGender()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].salary").value(givenEmployees.get(0).getSalary()));
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[1].employeeID").value(givenEmployees.get(1).getEmployeeID()));
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[2].employeeID").value(givenEmployees.get(2).getEmployeeID()));
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[3].employeeID").value(givenEmployees.get(3).getEmployeeID()));
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[4].employeeID").value(givenEmployees.get(4).getEmployeeID()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[1].employeeId").value(givenEmployees.get(1).getEmployeeId()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[2].employeeId").value(givenEmployees.get(2).getEmployeeId()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[3].employeeId").value(givenEmployees.get(3).getEmployeeId()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[4].employeeId").value(givenEmployees.get(4).getEmployeeId()));
 
     }
 
     @Test
     public void should_return_a_empoloyee_when_find_by_id() throws Exception{
         //Given
-        Employee givenEmployees= employeeDbRepository.findById(2);
+        Employee givenEmployees= employeeDbRepository.findById(101);
         //When
-        ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees/2"));
+        ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees/101"));
         //Then
         perform.andExpect(MockMvcResultMatchers.status().isOk());
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.employeeID").value(givenEmployees.getEmployeeID()));
+
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.employeeId").value(givenEmployees.getEmployeeId()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.employeeName").value(givenEmployees.getEmployeeName()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.age").value(givenEmployees.getAge()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.salary").value(givenEmployees.getSalary()));
@@ -79,15 +80,15 @@ public class EmployeeTest {
         ResultActions perform= client.perform(MockMvcRequestBuilders.get("/api/v1/employees?gender=MALE"));
         //Then
         perform.andExpect(MockMvcResultMatchers.status().isOk());
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].employeeID").value(givenEmployees.get(0).getEmployeeID()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].employeeId").value(givenEmployees.get(0).getEmployeeId()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].employeeName").value(givenEmployees.get(0).getEmployeeName()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].gender").value("MALE"));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].age").value(givenEmployees.get(0).getAge()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].salary").value(givenEmployees.get(0).getSalary()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[0].isActive").value(givenEmployees.get(0).getIsActive()));
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[1].employeeID").value(givenEmployees.get(1).getEmployeeID()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[1].employeeId").value(givenEmployees.get(1).getEmployeeId()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[1].gender").value("MALE"));
-        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[2].employeeID").value(givenEmployees.get(2).getEmployeeID()));
+        perform.andExpect(MockMvcResultMatchers.jsonPath("$.[2].employeeId").value(givenEmployees.get(2).getEmployeeId()));
         perform.andExpect(MockMvcResultMatchers.jsonPath("$.[2].gender").value("MALE"));
     }
 

@@ -21,8 +21,8 @@ public class EmployeeMemoryRepository implements EmployeeRepository {
             id= Collections.max(allEmployees.keySet()) + 1;
         }
         else id=1;
-        newEemployee.setEmployeeID(id);
-        return allEmployees.put(newEemployee.getEmployeeID(), newEemployee);
+        newEemployee.setEmployeeId(id);
+        return allEmployees.put(newEemployee.getEmployeeId(), newEemployee);
     }
     @Override
     public Map<Integer, Employee> getAllEmployees() {

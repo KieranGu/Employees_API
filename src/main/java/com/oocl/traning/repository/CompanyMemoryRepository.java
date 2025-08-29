@@ -70,4 +70,9 @@ public class CompanyMemoryRepository implements CompanyRepository {
     public void deleteCompany(int id) {
         companies.remove(id);
     }
+
+    @Override
+    public void clear() {
+        companies.clear();
+    }
 }

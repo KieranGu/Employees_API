@@ -41,7 +41,7 @@ public class EmployeeServiceTest {
         assertEquals(employee.getGender(),savedEmployee.getGender());
         assertEquals(employee.getSalary(),savedEmployee.getSalary());
         assertEquals(employee.getIsActive(),savedEmployee.getIsActive());
-        assertNotNull(savedEmployee.getEmployeeID());
+        assertNotNull(savedEmployee.getEmployeeId());
     }
 
     @Test
