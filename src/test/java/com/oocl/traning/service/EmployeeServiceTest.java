@@ -27,7 +27,7 @@ public class EmployeeServiceTest {
     @Test
     void should_create_employee_successfully(){
         //Given
-        Employee employee=new Employee("oocl",20,"MALE",10000);
+        Employee employee=new Employee("oocl",20,"MALE",10000.0);
         Employee mockedEmployee =new Employee(1,employee.getEmployeeName(),employee.getAge(),employee.getGender(),employee.getSalary());
         when(employeeDbRepository.save(Mockito.any(Employee.class)))
                 .thenReturn(mockedEmployee);//这段不懂嘞
@@ -47,7 +47,7 @@ public class EmployeeServiceTest {
     @Test
     void should_throw_exception_when_create_employee_with_invalid_age(){
         //Given
-        Employee employee=new Employee("oocl",16,"MALE",10000);
+        Employee employee=new Employee("oocl",16,"MALE",10000.0);
         //When
         IllegalArgumentException exception=assertThrows(IllegalArgumentException.class,
                 ()->employeeService.createEmployee(employee));
@@ -57,7 +57,7 @@ public class EmployeeServiceTest {
     @Test
     void should_throw_excepition_when_create_employee_with_unmatched_age_and_salary(){
         //Given
-        Employee employee=new Employee("oocl",33,"MALE",16000);
+        Employee employee=new Employee("oocl",33,"MALE",16000.0);
         //When
         IllegalArgumentException exception=assertThrows(IllegalArgumentException.class,
                 ()->employeeService.createEmployee(employee));
@@ -68,7 +68,7 @@ public class EmployeeServiceTest {
     void test_get_employee_by_id()
     {
         //Given
-        Employee employee=new Employee("oocl22",20,"MALE",10000);
+        Employee employee=new Employee("oocl22",20,"MALE",10000.0);
         Employee mockedEmployee =new Employee(1,employee.getEmployeeName(),employee.getAge(),employee.getGender(),employee.getSalary());
         employeeService.createEmployee(employee);
         when(employeeDbRepository.findById(Mockito.anyInt()))

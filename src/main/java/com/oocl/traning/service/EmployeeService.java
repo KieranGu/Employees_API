@@ -27,7 +27,7 @@ public class EmployeeService {
         else return employeeDbRepository.save(employee);
     }
 
-    public Employee getEmployeeById(int id) {
+    public Employee getEmployeeById(Integer id) {
         return employeeDbRepository.findById(id);
     }
 
@@ -42,7 +42,7 @@ public class EmployeeService {
         return employeeDbRepository.findGender(gender);
     }
 
-    public void updateEmployeeAgeandSalary(int id, int age, double salary) {
+    public void updateEmployeeAgeandSalary(Integer id, Integer age, Double salary) {
         Employee originEmployee= employeeDbRepository.findById(id);
         if(originEmployee.getIsActive()){
             originEmployee.setSalary(salary);
@@ -61,10 +61,10 @@ public class EmployeeService {
         else throw new IllegalArgumentException("Employee is not active");
     }
 
-    public List<Employee> getEmployeesByPage(int page, int pageSize) {
+    public List<Employee> getEmployeesByPage(Integer page, Integer pageSize) {
         return employeeDbRepository.getEmployeesByPage(page, pageSize);
     }
-    public void deleteEmployee(int id) {
+    public void deleteEmployee(Integer id) {
         Employee employee= employeeDbRepository.findById(id);
         employee.setIsActive(false);
         employeeDbRepository.setAEmployee(id,employee);

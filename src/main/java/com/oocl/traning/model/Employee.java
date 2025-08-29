@@ -11,8 +11,8 @@ public class Employee {
     private Integer employeeId;
     private String employeeName;
     private String gender;
-    private int age;
-    private double salary;
+    private Integer age;
+    private Double salary;
     private Boolean isActive =true;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -29,14 +29,14 @@ public class Employee {
 
     public Employee() {
     }
-    public Employee(Integer employeeID,String employeeName,int age,String gender,double salary){
+    public Employee(Integer employeeID,String employeeName,Integer age,String gender,Double salary){
         this.employeeId=employeeID;
         this.employeeName=employeeName;
         this.gender=gender;
         this.age=age;
         this.salary=salary;
     }
-    public Employee(String employeeName,int age,String gender,double salary){
+    public Employee(String employeeName,Integer age,String gender,Double salary){
         this.employeeId=null;
         this.employeeName=employeeName;
         this.gender=gender;
@@ -68,7 +68,7 @@ public class Employee {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 

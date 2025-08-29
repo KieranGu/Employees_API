@@ -1,5 +1,6 @@
 package com.oocl.traning.intergration;
 
+import com.oocl.traning.controller.dto.EmployeeResponse;
 import com.oocl.traning.model.Employee;
 import com.oocl.traning.repository.EmployeeDbRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
+import com.oocl.traning.controller.mapper.EmployeeMapper;
 
 import org.springframework.http.MediaType;
 
@@ -24,6 +26,7 @@ public class EmployeeTest {
 
     @Autowired
     private EmployeeDbRepository employeeDbRepository;
+    private final EmployeeMapper employeeMapper=new EmployeeMapper();
 
     @BeforeEach
     void setUp(){
