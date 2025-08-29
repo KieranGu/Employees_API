@@ -1,5 +1,6 @@
 package com.oocl.traning.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity//与某张表产生映射关系
@@ -16,6 +17,7 @@ public class Employee {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="company_id")
+    @JsonBackReference//组织json序列化时的死循环问题
     private Company company;
 
 

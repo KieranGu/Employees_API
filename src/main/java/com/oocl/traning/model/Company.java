@@ -1,5 +1,6 @@
 package com.oocl.traning.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ public class Company {
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
 //    @JoinColumn(name = "company_id") // Employee 表里要有这个字段
+    @JsonManagedReference
     List<Employee> employees = new ArrayList<>();
 
     public Company() {
