@@ -14,9 +14,16 @@ public class Employee {
     private double salary;
     private Boolean isActive =true;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name="company_id")
-//    private Company company;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="company_id")
+    private Company company;
+
+
+    // setter for company
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
 
     public Employee() {
     }

@@ -29,12 +29,12 @@ public class CompanyTest {
     void setUp(){
         companyDbRepository.clear();
         companyDbRepository.saveCompany(new Company( "Acme Corporation", List.of(
-                new Employee(1, "John Smith", 32, "MALE", 5000.0),
-                new Employee(2, "Jane Johnson", 28, "FEMALE", 6000.0))));
+                new Employee(null, "John Smith", 32, "MALE", 5000.0),
+                new Employee(null, "Jane Johnson", 28, "FEMALE", 6000.0))));
         companyDbRepository.saveCompany(new Company( "TechCom Solutions", List.of(
-                new Employee(3, "David Williams", 35, "MALE", 5500.0),
-                new Employee(4, "Emily Brown", 23, "FEMALE", 4500.0),
-                new Employee(5, "Michael Jones", 40, "MALE", 7000.0))));
+                new Employee(null, "David Williams", 35, "MALE", 5500.0),
+                new Employee(null, "Emily Brown", 23, "FEMALE", 4500.0),
+                new Employee(null, "Michael Jones", 40, "MALE", 7000.0))));
         companyDbRepository.saveCompany(new Company( "Global Innovators"));
         companyDbRepository.saveCompany(new Company( "Stellar Enterprises"));
         companyDbRepository.saveCompany(new Company( "Nexus Industries"));

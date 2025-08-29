@@ -14,8 +14,8 @@ public class Company {
     private int id;
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "company_id") // Employee 表里要有这个字段
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true)
+//    @JoinColumn(name = "company_id") // Employee 表里要有这个字段
     List<Employee> employees = new ArrayList<>();
 
     public Company() {
@@ -24,10 +24,20 @@ public class Company {
         this.id = id;
         this.name = name;
         this.employees = employees;
+
+        for (Employee e : employees) {
+            e.setCompany(this); // 设置反向关系
+        }
+
     }
     public Company(String name, List<Employee> employees) {
         this.name = name;
         this.employees = employees;
+
+        for (Employee e : employees) {
+            e.setCompany(this); // 设置反向关系
+        }
+
     }
     public Company(String name) {
         this.name = name;
