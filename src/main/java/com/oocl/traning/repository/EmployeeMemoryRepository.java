@@ -29,7 +29,7 @@ public class EmployeeMemoryRepository implements EmployeeRepository {
         return allEmployees;
     }
     @Override
-    public Employee findById(int id) {
+    public Employee findById(Integer id) {
         return allEmployees.get(id);
     }
     @Override
@@ -48,7 +48,7 @@ public class EmployeeMemoryRepository implements EmployeeRepository {
         return genderEmployees;
     }
     @Override
-    public void updateEmployeeAgeandSalary(int id, int age, double salary)
+    public void updateEmployeeAgeandSalary(Integer id, Integer age, Double salary)
     {
         Employee employee = allEmployees.get(id);
         if (employee != null) {
@@ -57,17 +57,17 @@ public class EmployeeMemoryRepository implements EmployeeRepository {
         }
     }
     @Override
-    public List<Employee> getEmployeesByPage(int page, int pageSize) {
+    public List<Employee> getEmployeesByPage(Integer page, Integer pageSize) {
         List<Employee> employees = new ArrayList<>(allEmployees.values());
-        int fromIndex = (page - 1) * pageSize;
-        int toIndex = Math.min(fromIndex + pageSize, employees.size());
+        Integer fromIndex = (page - 1) * pageSize;
+        Integer toIndex = Math.min(fromIndex + pageSize, employees.size());
         if (fromIndex >= employees.size() || fromIndex < 0) {
             return Collections.emptyList();
         }
         return employees.subList(fromIndex, toIndex);
     }
     @Override
-    public void deleteEmployee(int id) {
+    public void deleteEmployee(Integer id) {
         Employee employee=allEmployees.get(id);
         employee.setIsActive(false);
         allEmployees.put(id, employee);

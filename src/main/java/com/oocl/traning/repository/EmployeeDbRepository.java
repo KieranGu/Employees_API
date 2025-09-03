@@ -29,7 +29,7 @@ public class EmployeeDbRepository implements EmployeeRepository {
     }
 
     @Override
-    public Employee findById(int id) {
+    public Employee findById(Integer id) {
         return jpaEmployeeRepository.findById(id).orElse(null);
     }
 
@@ -45,7 +45,7 @@ public class EmployeeDbRepository implements EmployeeRepository {
     }
 
     @Override
-    public void updateEmployeeAgeandSalary(int id, int age, double salary) {
+    public void updateEmployeeAgeandSalary(Integer id, Integer age, Double salary) {
         Employee employee = jpaEmployeeRepository.findById(id).orElse(null);
         if (employee != null) {
             employee.setAge(age);
@@ -55,12 +55,12 @@ public class EmployeeDbRepository implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> getEmployeesByPage(int page, int pageSize) {
+    public List<Employee> getEmployeesByPage(Integer page, Integer pageSize) {
         return jpaEmployeeRepository.findAll(PageRequest.of(page - 1, pageSize)).getContent();
     }
 
     @Override
-    public void deleteEmployee(int id) {
+    public void deleteEmployee(Integer id) {
         jpaEmployeeRepository.deleteById(id);
     }
 

@@ -10,12 +10,12 @@ public interface EmployeeRepository {
     Employee save(Employee newEemployee);
 
     Map<Integer, Employee> getAllEmployees();
-    Employee findById(int id);
+    Employee findById(Integer id);
     ArrayList<Employee> findAll();
     ArrayList<Employee> findGender(String gender);
-    void updateEmployeeAgeandSalary(int id, int age, double salary);
-    List<Employee> getEmployeesByPage(int page, int pageSize);
-    void deleteEmployee(int id);
+    void updateEmployeeAgeandSalary(Integer id, Integer age, Double salary);
+    List<Employee> getEmployeesByPage(Integer page, Integer pageSize);
+    void deleteEmployee(Integer id);
     void setAEmployee(Integer id,Employee employee);
     void clear();
 
