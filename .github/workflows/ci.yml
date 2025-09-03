@@ -68,10 +68,10 @@ jobs:
           Spring_PROFILES_ACTIVE: test
         run: mvn clean test
 
-          - name: analyze with SonarQube
-            env:
-              SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-            run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=2025-Bootcamp_springboot-demo-private -DskipTests
+      #      - name: analyze with SonarQube
+      #        env:
+      #          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=2025-Bootcamp_springboot-demo-private -DskipTests
 
       - name: Build with Maven using production profile
         run: mvn clean package -DskipTests
