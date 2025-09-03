@@ -1,1 +1,0 @@
-ADD PRIMARY KEY (employee_id);
